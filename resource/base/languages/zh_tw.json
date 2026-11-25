@@ -115,5 +115,9 @@
     "pi.task.option.mailNotifyConfig.minInterval.label": "最短傳送間隔（分鐘）",
     "pi.task.option.mailNotifyConfig.minInterval.patternMsg": "間隔必須是 1-999 的整數",
     "pi.task.option.mailNotifyConfig.email.patternMsg": "請填寫完整的郵箱地址",
-    "pipeline.notifyMailOnFailure.focus.Node.Action.Succeeded": "📧已寄出中斷提醒郵件"
+    "pipeline.notifyMailOnFailure.focus.Node.Action.Succeeded": "📧已寄出中斷提醒郵件",
+    "pi.task.mailNotifyTest.name": "📧傳送測試郵件",
+    "pi.task.mailNotifyTest.description": "用目前設定裡的郵件參數立即寄出一封測試郵件，驗證 SMTP 伺服器、連接埠與授權碼是否可用。不節流，按下開始就寄。",
+    "pipeline.mailNotifyTest.focus.Node.Action.Succeeded": "📧測試郵件已寄出，請檢查收件匣",
+    "pipeline.mailNotifyTest.focus.Node.Action.Failed": "📧測試郵件寄送失敗：參數不完整或伺服器拒絕，詳見日誌"
 }

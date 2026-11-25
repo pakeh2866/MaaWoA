@@ -38,19 +38,34 @@ def _as_int(value: object, default: int) -> int:
         return default
 
 
-def _build_body(interval_minutes: int) -> str:
+def _build_body(interval_minutes: int, is_test: bool = False) -> str:
     client = pienv.client_name() or "-"
     controller = pienv.controller_type() or "-"
-    return "\n".join(
-        [
+    if is_test:
+        head = [
+            "MaaWoA 邮件提醒测试。",
+            "",
+            "如果你收到这封邮件，说明 SMTP 服务器、端口和授权码都可用了。",
+            "",
+        ]
+        tail = ["", "这是一封由「📧发送测试邮件」任务触发的测试邮件，请勿直接回复。"]
+    else:
+        head = [
             "MaaWoA 无人值守模式出现异常，已进入故障恢复流程（尝试返回 / 重启游戏）。",
             "",
-            f"时间：{datetime.now():%Y-%m-%d %H:%M:%S}",
-            f"客户端：{client}",
-            f"控制器：{controller}",
+        ]
+        tail = [
             "",
             f"同一故障 {interval_minutes} 分钟内只提醒一次；若恢复后再次异常会重新发送。",
             "本邮件由 MaaWoA 自动发送，请勿直接回复。",
+        ]
+    return "\n".join(
+        [
+            *head,
+            f"时间：{datetime.now():%Y-%m-%d %H:%M:%S}",
+            f"客户端：{client}",
+            f"控制器：{controller}",
+            *tail,
         ]
     )
 
@@ -128,25 +143,27 @@ class NotifyMail(CustomAction):
         subject = _clean(params.get("subject")) or "MaaWoA 无人值守中断"
         port = _as_int(params.get("port"), 587)
         interval = max(_as_int(params.get("min_interval"), 10), 1)
+        is_test = _clean(params.get("force")).lower() in {"1", "true", "yes"}
 
         if not host or not user or not to or not password:
-            logger.debug("notify_mail: 邮件参数不完整，跳过本次提醒")
-            return CustomAction.RunResult(success=True)
+            logger.warning("notify_mail: 邮件参数不完整，跳过本次提醒")
+            return CustomAction.RunResult(success=not is_test)
 
-        with _LOCK:
-            now = time.monotonic()
-            if _last_sent_at and now - _last_sent_at < interval * 60:
-                logger.debug("notify_mail: {} 分钟内已提醒过，跳过", interval)
-                return CustomAction.RunResult(success=True)
-            _last_sent_at = now
+        if not is_test:
+            with _LOCK:
+                now = time.monotonic()
+                if _last_sent_at and now - _last_sent_at < interval * 60:
+                    logger.debug("notify_mail: {} 分钟内已提醒过，跳过", interval)
+                    return CustomAction.RunResult(success=True)
+                _last_sent_at = now
 
         try:
-            _send_mail(host, port, user, password, to, subject, _build_body(interval))
-        except Exception as error:  # 邮件失败绝不能打断恢复流程
+            _send_mail(host, port, user, password, to, subject, _build_body(interval, is_test))
+        except Exception as error:  # 正常提醒时邮件失败绝不能打断恢复流程；测试时返回失败以便界面提示
             with _LOCK:
                 _last_sent_at = 0.0  # 失败不占用节流窗口，下次故障可重试
             logger.error("notify_mail: 发送失败 {}", error)
-            return CustomAction.RunResult(success=True)
+            return CustomAction.RunResult(success=not is_test)
 
-        logger.info("notify_mail: 已向 {} 发送提醒邮件", to)
+        logger.info("notify_mail: 已向 {} 发送{}", to, "测试邮件" if is_test else "提醒邮件")
         return CustomAction.RunResult(success=True)

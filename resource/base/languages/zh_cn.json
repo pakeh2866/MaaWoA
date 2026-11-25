@@ -115,5 +115,9 @@
     "pi.task.option.mailNotifyConfig.minInterval.label": "最短发送间隔（分钟）",
     "pi.task.option.mailNotifyConfig.minInterval.patternMsg": "间隔必须是 1-999 的整数",
     "pi.task.option.mailNotifyConfig.email.patternMsg": "请填写完整的邮箱地址",
-    "pipeline.notifyMailOnFailure.focus.Node.Action.Succeeded": "📧已发送中断提醒邮件"
+    "pipeline.notifyMailOnFailure.focus.Node.Action.Succeeded": "📧已发送中断提醒邮件",
+    "pi.task.mailNotifyTest.name": "📧发送测试邮件",
+    "pi.task.mailNotifyTest.description": "用当前设置里的邮件参数立即发送一封测试邮件，验证 SMTP 服务器、端口与授权码是否可用。不节流，点开始就发。",
+    "pipeline.mailNotifyTest.focus.Node.Action.Succeeded": "📧测试邮件已发送，请检查收件箱",
+    "pipeline.mailNotifyTest.focus.Node.Action.Failed": "📧测试邮件发送失败：参数不完整或服务器拒绝，详见日志"
 }

@@ -46,6 +46,31 @@
             "Node.Action.Succeeded": "$pipeline.notifyMailOnFailure.focus.Node.Action.Succeeded"
         }
     },
+    "mailNotifyTest": {
+        //设置页自检用：不节流，直接按当前配置发一封测试邮件
+        //由独立任务 mailNotifyTest 进入，任务结束即返回
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "notify_mail",
+                "custom_action_param": {
+                    "host": "",
+                    "port": 587,
+                    "user": "",
+                    "password": "",
+                    "to": "",
+                    "subject": "MaaWoA 邮件提醒测试",
+                    "min_interval": 10,
+                    "force": true
+                }
+            }
+        },
+        "next": [],
+        "focus": {
+            "Node.Action.Succeeded": "$pipeline.mailNotifyTest.focus.Node.Action.Succeeded",
+            "Node.Action.Failed": "$pipeline.mailNotifyTest.focus.Node.Action.Failed"
+        }
+    },
     "checkBack": {
         "recognition": {
             "type": "NeuralNetworkDetect",

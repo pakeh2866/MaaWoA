@@ -60,6 +60,17 @@
                 "entryAirportIATA",
                 "bribery"
             ]
+        },
+        {
+            //邮件配置自检，一键发一封测试邮件
+            "name": "mailNotifyTest",
+            "label": "$pi.task.mailNotifyTest.name",
+            "entry": "mailNotifyTest",
+            "default_check": false,
+            "description": "$pi.task.mailNotifyTest.description",
+            "option": [
+                "mailNotify"
+            ]
         }
     ]
 }
