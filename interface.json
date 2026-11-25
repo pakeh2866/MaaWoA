@@ -142,7 +142,22 @@
         "./tasks/base.json",
         "./resource/base/option/dailyUnique.json",
         "./resource/base/option/base.json",
-        "./resource/base/option/onnx.json"
+        "./resource/base/option/onnx.json",
+        "./resource/base/option/notice.json"
+    ],
+    "global_option": [
+        "mailNotify"
+    ],
+    "setting": [
+        {
+            "name": "notice",
+            "label": "$pi.setting.notice.name",
+            "description": "$pi.setting.notice.description",
+            "option": [
+                "mailNotify"
+            ],
+            "default_expand": true
+        }
     ],
     "preset": [
         {

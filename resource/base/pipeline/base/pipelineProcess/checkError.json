@@ -2,6 +2,7 @@
     "checkAll": {
         "action": "Screencap",
         "next": [
+            "notifyMailOnFailure",
             "checkUpgradeCard",
             "checkBack",
             "restartApp"
@@ -15,6 +16,34 @@
                     "notification"
                 ]
             }
+        }
+    },
+    "notifyMailOnFailure": {
+        //页面识别失败进入故障恢复时的邮件提醒，enabled 由 base 选项 mailNotify 覆写
+        //未在设置里配置完整的 SMTP 参数时，action 直接跳过，不影响恢复流程
+        "enabled": false,
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "notify_mail",
+                "custom_action_param": {
+                    "host": "",
+                    "port": 587,
+                    "user": "",
+                    "password": "",
+                    "to": "",
+                    "subject": "MaaWoA 无人值守中断",
+                    "min_interval": 10
+                }
+            }
+        },
+        "next": [
+            "checkUpgradeCard",
+            "checkBack",
+            "restartApp"
+        ],
+        "focus": {
+            "Node.Action.Succeeded": "$pipeline.notifyMailOnFailure.focus.Node.Action.Succeeded"
         }
     },
     "checkBack": {

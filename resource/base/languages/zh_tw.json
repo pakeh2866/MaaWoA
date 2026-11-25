@@ -98,5 +98,22 @@
     "pipeline.restartApp.focus.Node.Action.Starting": "♻️開始重新啟動遊戲",
     "pipeline.restartApp.focus.Node.Action.Succeeded": "♻️停止/啟動動作成功",
     "pipeline.restartApp.focus.Node.Action.Failed": "⚠️停止/啟動動作失敗",
-    "desktop.pipeline.restartApp.focus": "🟡非 Android／模擬器控制器跳過停止/啟動"
+    "desktop.pipeline.restartApp.focus": "🟡非 Android／模擬器控制器跳過停止/啟動",
+    "pi.setting.notice.name": "🔔提醒",
+    "pi.setting.notice.description": "任務異常中斷時透過郵件提醒，避免掛機長時間無人處理。",
+    "pi.task.option.mailNotify.name": "📧郵件提醒",
+    "pi.task.option.mailNotify.description": "任務進入故障恢復流程時寄出一封郵件。需要先填寫下方 SMTP 伺服器與郵箱授權碼。",
+    "pi.task.option.mailNotifyConfig.name": "郵件伺服器設定",
+    "pi.task.option.mailNotifyConfig.description": "以 QQ 郵箱為例：SMTP 伺服器 smtp.qq.com、連接埠 587、帳號填你的 QQ 郵箱、密碼填網頁端開啟 SMTP 後取得的授權碼（不是登入密碼）。\n同一故障在最短傳送間隔內只提醒一次，恢復後再次異常會重新傳送。",
+    "pi.task.option.mailNotifyConfig.smtpHost.label": "SMTP 伺服器",
+    "pi.task.option.mailNotifyConfig.smtpPort.label": "連接埠（587=STARTTLS，465=SSL）",
+    "pi.task.option.mailNotifyConfig.smtpPort.patternMsg": "連接埠必須是 2-5 位數字",
+    "pi.task.option.mailNotifyConfig.smtpUser.label": "寄件郵箱（登入帳號）",
+    "pi.task.option.mailNotifyConfig.smtpPassword.label": "郵箱授權碼（非登入密碼）",
+    "pi.task.option.mailNotifyConfig.mailTo.label": "收件郵箱",
+    "pi.task.option.mailNotifyConfig.mailSubject.label": "郵件標題",
+    "pi.task.option.mailNotifyConfig.minInterval.label": "最短傳送間隔（分鐘）",
+    "pi.task.option.mailNotifyConfig.minInterval.patternMsg": "間隔必須是 1-999 的整數",
+    "pi.task.option.mailNotifyConfig.email.patternMsg": "請填寫完整的郵箱地址",
+    "pipeline.notifyMailOnFailure.focus.Node.Action.Succeeded": "📧已寄出中斷提醒郵件"
 }

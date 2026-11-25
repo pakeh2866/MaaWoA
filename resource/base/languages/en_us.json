@@ -98,5 +98,22 @@
     "pipeline.restartApp.focus.Node.Action.Starting": "♻️Starting game restart",
     "pipeline.restartApp.focus.Node.Action.Succeeded": "♻️Stop / start action succeeded",
     "pipeline.restartApp.focus.Node.Action.Failed": "⚠️Stop / start action failed",
-    "desktop.pipeline.restartApp.focus": "🟡Skipping stop / start for non-Android/emulator controller"
+    "desktop.pipeline.restartApp.focus": "🟡Skipping stop / start for non-Android/emulator controller",
+    "pi.setting.notice.name": "🔔Notifications",
+    "pi.setting.notice.description": "Send an email when the task is interrupted unexpectedly, so unattended runs do not stall silently.",
+    "pi.task.option.mailNotify.name": "📧Email Alert",
+    "pi.task.option.mailNotify.description": "Send an email when the task enters the failure recovery flow. Fill in the SMTP server and the mailbox authorization code below first.",
+    "pi.task.option.mailNotifyConfig.name": "Mail Server Settings",
+    "pi.task.option.mailNotifyConfig.description": "For QQ Mail as an example: SMTP server smtp.qq.com, port 587, account is your QQ mailbox, password is the authorization code obtained after enabling SMTP in the web settings (not your login password).\nThe same failure is reported once per minimum interval; a new failure after recovery is sent again.",
+    "pi.task.option.mailNotifyConfig.smtpHost.label": "SMTP server",
+    "pi.task.option.mailNotifyConfig.smtpPort.label": "Port (587=STARTTLS, 465=SSL)",
+    "pi.task.option.mailNotifyConfig.smtpPort.patternMsg": "Port must be 2-5 digits",
+    "pi.task.option.mailNotifyConfig.smtpUser.label": "Sender mailbox (login account)",
+    "pi.task.option.mailNotifyConfig.smtpPassword.label": "Mailbox authorization code (not the login password)",
+    "pi.task.option.mailNotifyConfig.mailTo.label": "Recipient mailbox",
+    "pi.task.option.mailNotifyConfig.mailSubject.label": "Mail subject",
+    "pi.task.option.mailNotifyConfig.minInterval.label": "Minimum interval (minutes)",
+    "pi.task.option.mailNotifyConfig.minInterval.patternMsg": "Interval must be an integer between 1 and 999",
+    "pi.task.option.mailNotifyConfig.email.patternMsg": "Please enter a complete email address",
+    "pipeline.notifyMailOnFailure.focus.Node.Action.Succeeded": "📧Interruption alert email sent"
 }

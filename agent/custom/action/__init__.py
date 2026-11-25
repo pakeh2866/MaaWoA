@@ -1,6 +1,6 @@
 from importlib import import_module
 
-ACTION_MODULES = ("swipe_by_vector",)
+ACTION_MODULES = ("swipe_by_vector", "notify_mail")
 
 
 def register_all() -> None:
