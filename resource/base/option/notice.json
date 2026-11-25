@@ -85,6 +85,19 @@
                         "subject": "{mail_subject}",
                         "min_interval": "{min_interval}"
                     }
+                },
+                //设置页自检任务复用同一份配置，避免在任务面板里重复填写
+                "mailNotifyTest": {
+                    "custom_action_param": {
+                        "host": "{smtp_host}",
+                        "port": "{smtp_port}",
+                        "user": "{smtp_user}",
+                        "password": "{smtp_password}",
+                        "to": "{mail_to}",
+                        "subject": "MaaWoA 邮件提醒测试",
+                        "min_interval": "{min_interval}",
+                        "force": true
+                    }
                 }
             }
         }

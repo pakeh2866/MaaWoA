@@ -67,10 +67,7 @@
             "label": "$pi.task.mailNotifyTest.name",
             "entry": "mailNotifyTest",
             "default_check": false,
-            "description": "$pi.task.mailNotifyTest.description",
-            "option": [
-                "mailNotify"
-            ]
+            "description": "$pi.task.mailNotifyTest.description"
         }
     ]
 }
